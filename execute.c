@@ -26,8 +26,6 @@ int execute(char *line, unsigned int line_number, stack_t **top)
 	str = strtok(line, delim);
 	if (str == NULL)
 		return (0);
-	if (str[0] == '#')
-		return (0);
 	glob.args = strtok(NULL, delim);
 	while (op_func[i].opcode != NULL && str != NULL)
 	{

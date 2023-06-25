@@ -10,26 +10,32 @@ void push(stack_t **top, unsigned int line_number)
 {
 	stack_t *new_node = NULL;
 	int data;
-	char *endptr;
+	char *ptr;
 
-	if (glob.args == NULL || *glob.args == '\0' || isspace(*\glob.args))
+	if (glob.args == NULL || *glob.args == '\0' || isspace(*glob.args))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free_error(top);
 		exit(EXIT_FAILURE);
 	}
-	data = (int)strtol(glob.args, endptr, 10);
-	if (endptr != '\0' || endptr == glob.args || value < INT_MIN || data > INT_MAX)
+	for (ptr = glob.args; *ptr != '\0'; ptr++)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		free_error(top);
-		exit(EXIT_FAILURE);
+		if (!isdigit(*ptr))
+		{
+			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			free_error(top);
+			exit(EXIT_FAILURE);
+		}
 	}
+	data = atoi(glob.args);
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free_error(top);
+		free_struct(top);
+		free(glob.line);
+		if (glob.file != NULL)
+			fclose(glob.file);
 		exit(EXIT_FAILURE);
 	}
 	new_node->prev = NULL;

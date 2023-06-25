@@ -19,8 +19,6 @@ void add(stack_t **top, unsigned int line_number)
 	}
 	node = *top;
 	sum = node->n + node->next->n;
-	*top = (*top)->next;
-	(*top)->prev = NULL;
+	pop(top, line_number);
 	(*top)->n = sum;
-	free(node);
 }

@@ -8,6 +8,9 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <limits.h>
+#include <ctype.h>
+
 
 typedef struct glob_s
 {
