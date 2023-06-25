@@ -9,7 +9,7 @@ glob_t glob = {NULL, NULL, NULL};
 
 int main(int argc, char *argv[])
 {
-	unsigned int line_number = 1;
+	unsigned int line_number = 0;
 	FILE *file;
 	char *line;
 	stack_t *top = NULL;
@@ -28,15 +28,16 @@ int main(int argc, char *argv[])
 	}
 	while (getline(&line, &n, file) != -1)
 	{
+		line_number++;
 		if (execute(line, line_number, &top) == 0)
 		{
-			line_number++;
 			continue;
 		}
 
 	}
+	fclose(file);
 	free_struct(&top);
 	free(line);
-	fclose(file);
+
 	exit(EXIT_SUCCESS);
 }

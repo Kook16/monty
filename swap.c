@@ -13,9 +13,7 @@ void swap(stack_t **top, unsigned int line_number)
 	if (*top == NULL || (*top)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
-		free(glob.line);
-		free_struct(top);
-		fclose(glob.file);
+		free_error(top);
 		exit(EXIT_FAILURE);
 	}
 	node = *top;

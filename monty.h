@@ -62,4 +62,5 @@ void free_struct(stack_t **top);
 void pop(stack_t **top, unsigned int line_number);
 void nop(stack_t **top, unsigned int line_number);
 int execute(char *line, unsigned line_number, stack_t **top);
+void free_error(stack_t **top);
 #endif

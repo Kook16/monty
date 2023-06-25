@@ -12,10 +12,8 @@ void pop(stack_t **top, unsigned int line_number)
 
 	if (*top == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		free(glob.line);
-		free_struct(top);
-		fclose(glob.file);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		free_error(top);
 		exit(EXIT_FAILURE);
 	}
 	node = *top;

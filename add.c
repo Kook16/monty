@@ -14,13 +14,13 @@ void add(stack_t **top, unsigned int line_number)
 	if (*top == NULL || (*top)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-		free(glob.line);
-		free_struct(top);
-		fclose(glob.file);
+		free_error(top);
 		exit(EXIT_FAILURE);
 	}
 	node = *top;
 	sum = node->n + node->next->n;
-	node->next->n = sum;
-	pop(top, line_number);
+	*top = (*top)->next;
+	(*top)->prev = NULL;
+	(*top)->n = sum;
+	free(node);
 }
