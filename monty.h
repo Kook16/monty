@@ -11,7 +11,13 @@
 #include <limits.h>
 #include <ctype.h>
 
-
+/* Struct declarartion */
+/**
+ * struct glob_s - contains varaibles defined globally
+ * @args: A string of characters being passed to monty program
+ * @line: A string of characters being read of monty file
+ * @file: file pointer to monty file being read
+ */
 typedef struct glob_s
 {
 	char *args;
@@ -20,7 +26,7 @@ typedef struct glob_s
 } glob_t;
 
 extern glob_t glob;
-/* Struct declarartion */
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -59,11 +65,13 @@ void nop(stack_t **top, unsigned int line_number);
 void swap(stack_t **top, unsigned int line_number);
 void mul(stack_t **top, unsigned int line_number);
 void sub(stack_t **top, unsigned int line_number);
+void mod(stack_t **top, unsigned int line_number);
+void divide(stack_t **top, unsigned int line_number);
 int isInteger(char *str);
 char **split_string(char *line);
 void free_struct(stack_t **top);
 void pop(stack_t **top, unsigned int line_number);
 void nop(stack_t **top, unsigned int line_number);
-int execute(char *line, unsigned line_number, stack_t **top);
+int execute(char *line, unsigned int line_number, stack_t **top);
 void free_error(stack_t **top);
 #endif

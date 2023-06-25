@@ -18,13 +18,17 @@ int execute(char *line, unsigned int line_number, stack_t **top)
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
+		{"sub", sub},
+		{"div", divide},
+		{"mul", mul},
+		{"mod", mod},
 		{NULL, NULL}
 	};
 	int i = 0, flag = 0;
 	char *str, *delim = " \t\n";
 
 	str = strtok(line, delim);
-	if (str == NULL)
+	if (str == NULL || *str == '#')
 		return (0);
 	glob.args = strtok(NULL, delim);
 	while (op_func[i].opcode != NULL && str != NULL)
