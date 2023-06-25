@@ -19,6 +19,8 @@ void mul(stack_t **top, unsigned int line_number)
 	}
 	node = *top;
 	res = node->n * node->next->n;
-	pop(top, line_number);
+	*top = (*top)->next;
+	(*top)->prev = NULL;
 	(*top)->n = res;
+	free(node);
 }
